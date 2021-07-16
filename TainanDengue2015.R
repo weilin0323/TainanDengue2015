@@ -1,5 +1,5 @@
 p_load('readxl')
-dengue <- read.csv("C:/Users/Administrator/Desktop/R練習/dengue-20151107-big5.csv")
+dengue <- read.csv("dengue-20151107-big5.csv")
 str(dengue) #檢查資料的狀況
 summary(dengue)
 
