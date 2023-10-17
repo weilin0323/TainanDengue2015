@@ -1,5 +1,9 @@
+install.packages("pacman")
+library(pacman)
+pacman::p_load(ggplot2)
 p_load('readxl')
-dengue <- read.csv("dengue-20151107-big5.csv")
+#dengue <- read.csv("dengue-20151107-big5.csv", header=TRUE, encoding = "UTF-8")
+dengue <-read.csv("dengue-20151107-big5.csv",fileEncoding='big5')
 str(dengue) #檢查資料的狀況
 summary(dengue)
 
@@ -20,6 +24,7 @@ dengue.tn$區別 <- factor(dengue.tn$區別)
 #再確認一次區別名稱
 levels(dengue.tn$區別)
 
+par(family="STKaiti") #字體
 #畫出每週登革熱的病例數統計圖 breaks=指定分隔好的區間的個數
 hist(as.Date(dengue.tn$確診日), breaks = "weeks",
      freq = TRUE, main = "登革熱每週病例數", xlab = "日期",
@@ -53,4 +58,4 @@ ggplot(dengue.top.reg, aes(x=as.Date(確診日))) +
   stat_bin(binwidth=7, position="identity") +
   theme(axis.text.x = element_text(angle=90)) +
   xlab("日期") + ylab("病例數") +
-  ggtitle("登革熱每週病例數") + facet_grid(區別 ~ .)
+  ggtitle("登革熱每週病例數") + facet_grid(區別 ~ .)+theme(text=element_text(family="STKaiti"))
